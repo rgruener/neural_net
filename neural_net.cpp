@@ -196,6 +196,11 @@ int neuralNet::test(std::ifstream &testingDataFile, std::ofstream &outputFile){
         precision = results[i][0] / (results[i][0] + results[i][1]);
         recall = results[i][0] / (results[i][0] + results[i][2]);
         f1 = (2 * precision * recall) / (precision + recall);
+        // Check for nans, set 0 if a number is nan
+        if (overall_accuracy != overall_accuracy) overall_accuracy = 0;
+        if (precision != precision) precision = 0;
+        if (recall != recall) recall = 0;
+        if (f1 != f1) f1 = 0;
         outputFile << overall_accuracy << " " << precision << " " << recall << " " << f1 << std::endl;
         avg_overall += overall_accuracy;
         avg_precision += precision;
@@ -206,12 +211,17 @@ int neuralNet::test(std::ifstream &testingDataFile, std::ofstream &outputFile){
     precision = global_A / (global_A + global_B);
     recall = global_A / (global_A + global_C);
     f1 = (2 * precision * recall) / (precision + recall);
+    if (overall_accuracy != overall_accuracy) overall_accuracy = 0;
+    if (precision != precision) precision = 0;
+    if (recall != recall) recall = 0;
+    if (f1 != f1) f1 = 0;
     outputFile << overall_accuracy << " " << precision << " " << recall << " " << f1 << std::endl;
     // Macro-averaging
     avg_overall /= num_outputs;
     avg_precision /= num_outputs;
     avg_recall /= num_outputs;
     avg_f1 = (2 * avg_precision * avg_recall) / (avg_precision + avg_recall);
+    if (avg_f1 != avg_f1) avg_f1 = 0;
     outputFile << avg_overall << " " << avg_precision << " " << avg_recall << " " << avg_f1 << std::endl;
 
     return 0;
