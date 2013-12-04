@@ -14,7 +14,6 @@ s = ''
 for size in layer_sizes:
     s += str(size) + ' '
 outfile.write(s[:-1] + '\n')
-print(s[:-1])
 
 for (i, layer_size) in enumerate(layer_sizes[1:]):
     for j in range(layer_size):
@@ -22,4 +21,3 @@ for (i, layer_size) in enumerate(layer_sizes[1:]):
         for k in range(layer_sizes[i]):
             s += str(random()) + ' '
         outfile.write(s[:-1] + '\n')
-        print(s[:-1])
