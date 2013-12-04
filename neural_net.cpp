@@ -7,7 +7,7 @@
 #include "neural_net.h"
 
 neuralNet::neuralNet(std::ifstream &initFile) {
-    this->numLayers = 3;
+    this->numLayers = 3; // Assume 3 layers for now
     this->layerSizes.resize(this->numLayers);
     this->layers.resize(this->numLayers);
     for (int i=0; i<numLayers; i++) {
